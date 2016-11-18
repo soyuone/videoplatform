@@ -10,9 +10,12 @@
 		}
 		p{
 			color: green;
+			text-decoration: underline;
+			text-indent: 2em;
+			line-height: 1.5em;
 		}
 		span{
-			color: yellow;
+			color: yellow;font-weight: bold;font-style: italic;
 		}
 		blockquote{
 			color: pink;
@@ -40,6 +43,10 @@
 		a:hover{
 		    color:black;
 		    font-size:35px;
+		}
+		body{
+			font-family: "Microsoft Yahei";font-size: 12px;color: #666;font-style: italic;
+			text-align: left;
 		}
 	</style>
 </head>
