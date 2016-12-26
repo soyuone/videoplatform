@@ -187,5 +187,9 @@
 	        </ul>
 	    </li>
 	</ul>
+	<div id="div1" style="float: left;border:2px red solid;height:200px;width:200px;">浮动模型栏目一</div>
+	<div id="div2" style="float: right;border:2px red solid;height:200px;width:200px;">浮动模型栏目二</div>
+	<div id="div1" style="position:absolute;border:2px black solid;height:200px;width:200px;left: 500px;top: 2200px;">层模型栏目一</div>
+	<div id="div1" style="position:relative;border:2px black solid;height:200px;width:200px;left: 300px;">层模型栏目二</div>	
 </body>
 </html>

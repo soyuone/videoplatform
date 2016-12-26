@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.song.videoplatform.service.infantry.dao.InfantryDao;
+import com.song.videoplatform.service.infantry.model.po.InfantryPO;
 import com.song.videoplatform.service.infantry.service.InfantryService;
 
 /**
@@ -25,4 +26,14 @@ public class InfantryServiceImpl implements InfantryService {
 
 	@Resource(name = "infantryDaoImpl")
 	private InfantryDao InfantryDao;
+
+	@Override
+	public InfantryPO addInfantry(InfantryPO infantryPO) {
+		return InfantryDao.save(infantryPO);
+	}
+
+	@Override
+	public InfantryPO updateInfantry(InfantryPO infantryPO) {
+		return InfantryDao.update(infantryPO);
+	}
 }
