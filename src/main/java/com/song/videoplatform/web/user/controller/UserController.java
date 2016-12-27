@@ -14,7 +14,7 @@ import com.song.videoplatform.common.util.CommonUtils;
 import com.song.videoplatform.common.util.IConstant;
 import com.song.videoplatform.common.util.ResultInfo;
 import com.song.videoplatform.common.util.ResultObj;
-import com.song.videoplatform.web.user.service.Web_UserService;
+import com.song.videoplatform.service.user.service.UserService;
 import com.song.videoplatform.web.user.vo.UserVO;
 
 /**
@@ -37,13 +37,19 @@ public class UserController {
 	protected Logger log = Logger.getLogger(UserController.class);
 
 	@Autowired
-	private Web_UserService web_UserService;
+	private UserService userService;
+	
+	// Java异常机制主要依赖于try,catch,finally,throw,throws五个关键字
+	// throws关键字主要用在方法签名中，用于声明该方法可抛出的异常
+	// throw用于抛出一个实际的异常 
+	// Java将异常分为两类：Checked异常，Runtime异常
+	// Java认为Checked异常都是可以在编译阶段被处理的异常，所以它强制程序处理所有的Checked异常，而Runtime异常则无须处理
 
 	/**
 	 * <p>
 	 * Description:[用户注册]
 	 * </p>
-	 * Created by [SO] [2016年10月21日] Midified by [修改人] [修改时间]
+	 * Created by [SOYU] [2016年12月27日] Midified by [修改人] [修改时间]
 	 *
 	 * @param request
 	 * @return
@@ -63,11 +69,13 @@ public class UserController {
 			String password = request.getParameter("password");
 			String sex = request.getParameter("sex");
 
+			//注册
 			resultInfo =
-					web_UserService.register(userid, username, realname, email, birthday, createtime, password, sex);
+					userService.register(userid, username, realname, email, birthday, createtime, password, sex);
 		}
 		catch (Exception e) {
 			log.error(e.getLocalizedMessage(), e);
+			resultInfo = new ResultInfo(IConstant.FAILURE, "注册失败，可能是网络异常", false);
 		}
 		return resultInfo;
 	}
@@ -90,18 +98,20 @@ public class UserController {
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
 
-			resultObj = web_UserService.login(username, password);
+			//登录
+			resultObj = userService.login(username, password);
 
-			// 登录成功后把用户信息保存到HttpSession
+			// 如果登录成功则把用户信息保存到HttpSession
 			if (resultObj.getCode() == IConstant.SUCCESS) {
 				HttpSession httpSession = request.getSession();
 				httpSession.setAttribute("USER", resultObj.getResult());
 				// 设置HttpSession有效期
-				httpSession.setMaxInactiveInterval(1600);
+				httpSession.setMaxInactiveInterval(1800);
 			}
 		}
 		catch (Exception e) {
 			log.error(e.getLocalizedMessage(), e);
+			resultObj = new ResultObj<UserVO>(IConstant.FAILURE, "登录失败，网络异常", false);
 		}
 		return resultObj;
 	}

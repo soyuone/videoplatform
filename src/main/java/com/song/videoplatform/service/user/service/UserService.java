@@ -1,9 +1,11 @@
 package com.song.videoplatform.service.user.service;
 
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.InvocationTargetException;
+import java.text.ParseException;
 
-import com.song.videoplatform.service.user.model.po.UserPO;
+import com.song.videoplatform.common.util.ResultInfo;
+import com.song.videoplatform.common.util.ResultObj;
+import com.song.videoplatform.web.user.vo.UserVO;
 
 /**
  * <p>
@@ -24,35 +26,35 @@ public interface UserService {
 	 * <p>
 	 * Description:[用户注册]
 	 * </p>
-	 * Created by [SOYU] [2016年10月21日] Midified by [修改人] [修改时间]
+	 * Created by [SOYU] [2016年12月27日] Midified by [修改人] [修改时间]
 	 *
-	 * @param userPO
+	 * @param userid
+	 * @param username
+	 * @param realname
+	 * @param email
+	 * @param birthday
+	 * @param createtime
+	 * @param password
+	 * @param sex
 	 * @return
+	 * @throws ParseException
 	 */
-	public UserPO addUser(UserPO userPO);
+	public ResultInfo register(String userid, String username, String realname, String email, String birthday,
+			String createtime, String password, String sex) throws ParseException;
 
 	/**
 	 * <p>
-	 * Description:[重名校验]
+	 * Description:[用户登录]
 	 * </p>
-	 * Created by [SOYU] [2016年10月21日] Midified by [修改人] [修改时间]
+	 * Created by [SOYU] [2016年12月27日] Midified by [修改人] [修改时间]
 	 *
-	 * @param idProperty
-	 * @param id
-	 * @param map
+	 * @param username
+	 * @param password
 	 * @return
+	 * @throws InvocationTargetException
+	 * @throws IllegalAccessException
 	 */
-	public boolean duplicatecheck(String idProperty, Object id, Map<String, Object> map);
+	public ResultObj<UserVO> login(String username, String password) throws IllegalAccessException,
+			InvocationTargetException;
 
-	/**
-	 * <p>
-	 * Description:[按属性查找对象列表]
-	 * </p>
-	 * Created by [SOYU] [2016年10月21日] Midified by [修改人] [修改时间]
-	 *
-	 * @param property
-	 * @param value
-	 * @return
-	 */
-	public List<UserPO> findByProperty(String property, Object value);
 }
