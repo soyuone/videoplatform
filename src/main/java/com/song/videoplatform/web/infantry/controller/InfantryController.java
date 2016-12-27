@@ -17,7 +17,6 @@ import com.song.videoplatform.common.util.IConstant;
 import com.song.videoplatform.common.util.ResultInfo;
 import com.song.videoplatform.service.infantry.model.po.InfantryPO;
 import com.song.videoplatform.service.infantry.service.InfantryService;
-import com.song.videoplatform.web.infantry.service.Web_InfantryService;
 
 /**
  * <p>
@@ -37,9 +36,6 @@ import com.song.videoplatform.web.infantry.service.Web_InfantryService;
 public class InfantryController {
 
 	protected Logger log = Logger.getLogger(InfantryController.class);
-
-	@Autowired
-	private Web_InfantryService web_InfantryService;
 	
 	@Autowired
 	private InfantryService infantryService;
@@ -84,11 +80,13 @@ public class InfantryController {
 
 			InfantryPO infantryPO =
 					new InfantryPO(null, actress, series, designation, company, sizeDouble, format, addtimeDate, image);
-			resultInfo = web_InfantryService.addInfantry(infantryPO);
+			//添加
+			infantryService.addInfantry(infantryPO);
+			resultInfo = new ResultInfo(IConstant.SUCCESS, "新增infantry成功", true);
 		}
 		catch (Exception e) {
 			log.error(e.getLocalizedMessage(), e);
-			resultInfo = new ResultInfo(IConstant.FAILURE, "新增infantry异常", false);
+			resultInfo = new ResultInfo(IConstant.FAILURE, "新增infantry异常，可能是网络原因", false);
 		}
 		return resultInfo;
 	}
@@ -129,11 +127,13 @@ public class InfantryController {
 
 			InfantryPO infantryPO =
 					new InfantryPO(null, actress, series, designation, company, sizeDouble, format, addtimeDate, image);
-			resultInfo = web_InfantryService.updateInfantry(infantryPO);
+			//更新
+			infantryService.updateInfantry(infantryPO);
+			resultInfo = new ResultInfo(IConstant.SUCCESS, "修改infantry成功", true);
 		}
 		catch (Exception e) {
 			log.error(e.getLocalizedMessage(), e);
-			resultInfo = new ResultInfo(IConstant.FAILURE, "修改infantry异常", false);
+			resultInfo = new ResultInfo(IConstant.FAILURE, "修改infantry异常，可能是网络原因", false);
 		}
 		return resultInfo;
 	}

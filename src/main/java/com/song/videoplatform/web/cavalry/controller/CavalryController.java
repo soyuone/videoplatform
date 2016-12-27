@@ -17,7 +17,7 @@ import com.song.videoplatform.common.util.DateUtil;
 import com.song.videoplatform.common.util.IConstant;
 import com.song.videoplatform.common.util.ResultInfo;
 import com.song.videoplatform.service.cavalry.model.po.CavalryPO;
-import com.song.videoplatform.web.cavalry.service.Web_CavalryService;
+import com.song.videoplatform.service.cavalry.service.CavalryService;
 
 /**
  * <p>
@@ -39,7 +39,7 @@ public class CavalryController {
 	protected Logger log = Logger.getLogger(CavalryController.class);
 
 	@Autowired
-	private Web_CavalryService web_CavalryService;
+	private CavalryService cavalryService;
 
 	/**
 	 * <p>
@@ -73,11 +73,13 @@ public class CavalryController {
 			Date addtimeDate = DateUtil.StringToDate(addtime, CommonUtils.SHORT_DATE_FORMAT);
 			CavalryPO cavalryPO =
 					new CavalryPO(null, actress, series, designation, company, sizeDouble, format, addtimeDate, image);
-			resultInfo = web_CavalryService.addCavalry(cavalryPO);
+			// 添加
+			cavalryService.addCavalry(cavalryPO);
+			resultInfo = new ResultInfo(IConstant.SUCCESS, "新增cavalry视频信息成功", true);
 		}
 		catch (Exception e) {
 			log.error(e.getLocalizedMessage(), e);
-			resultInfo = new ResultInfo(IConstant.FAILURE, "新增cavalry视频信息异常", false);
+			resultInfo = new ResultInfo(IConstant.FAILURE, "新增cavalry视频信息异常，可能是网络原因", false);
 		}
 		return resultInfo;
 	}
