@@ -56,5 +56,17 @@ public interface UserService {
 	 */
 	public ResultObj<UserVO> login(String username, String password) throws IllegalAccessException,
 			InvocationTargetException;
+	
+	/**
+	 * <p>
+	 * Description:[修改用户信息]
+	 * </p>
+	 * Created by [SOYU] [2016年12月28日] Midified by [修改人] [修改时间]
+	 *
+	 * @param userid
+	 * @param username
+	 * @return
+	 */
+	public ResultInfo updateUserinfo(String userid, String username);
 
 }

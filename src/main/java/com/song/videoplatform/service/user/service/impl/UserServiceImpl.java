@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.song.videoplatform.common.util.DateUtil;
@@ -36,6 +37,8 @@ import com.song.videoplatform.web.user.vo.UserVO;
  */
 @Service("userServiceImpl")
 public class UserServiceImpl implements UserService {
+	
+	protected Logger log = Logger.getLogger(UserServiceImpl.class);
 
 	@Resource(name = "userDaoImpl")
 	private UserDao userDao;
@@ -94,6 +97,18 @@ public class UserServiceImpl implements UserService {
 			resultObj = new ResultObj<UserVO>(IConstant.FAILURE, "用户名不存在，请先注册", false);
 		}
 		return resultObj;
+	}
+
+	@Override
+	public ResultInfo updateUserinfo(String userid, String username) {
+		ResultInfo resultInfo = new ResultInfo();
+		int num =
+				userDao.createQuery(" UPDATE UserPO SET username = :username WHERE userid = :userid ")
+						.setParameter("username", username).setParameter("userid", userid).executeUpdate();
+		if(num > 0){
+			resultInfo = new ResultInfo(IConstant.FAILURE, "修改用户信息成功", true);
+		}
+		return resultInfo;
 	}
 
 }
