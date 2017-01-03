@@ -39,7 +39,7 @@ public class InfantryController {
 	
 	@Autowired
 	private InfantryService infantryService;
-
+	
 	/**
 	 * <p>
 	 * Description:[新增infantry信息]
