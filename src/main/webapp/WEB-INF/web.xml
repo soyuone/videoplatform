@@ -5,30 +5,33 @@
 	version="3.0">
 
 	<!-- web.xml的加载顺序是：context-param -> listener -> filter -> servlet -->
+	<!-- JSP,Servlet,Listener和Filter都必须运行在Web应用中 -->
 
 	<!-- 以声明式方式创建spring容器，ContextLoaderListener监听器实现ServletContextListener接口;自动查找*Context.xml文件 -->
-	<!-- ServletContextListener用于监听web应用的启动和关闭  -->
+	<!-- ServletContextListener用于监听web应用的启动和关闭 -->
+	<!-- context-param元素声明应用范围内的初始化参数 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/classes/*Context.xml</param-value>
 	</context-param>
+	<!-- 监听器，在会话或者servlet环境被创建、修改和删除时得到通知 -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
-	<!-- servlet生命周期：-->
+	<!-- servlet生命周期： -->
 	<!-- 1.创建servlet实例 -->
 	<!-- 2.web容器调用init方法对servlet进行初始化 -->
 	<!-- 3.使用service方法响应用户请求 -->
 	<!-- 4.调用destroy销毁servlet -->
-	
+
 	<!-- ContextLoaderListener初始化的上下文加载的Bean是对于整个应用程序共享的，不管是使用什么表现层技术，一般如DAO层、Service层Bean -->
 	<!-- DispatcherServlet初始化的上下文加载的Bean是只对Spring Web MVC有效的Bean，如Controller、HandlerMapping、HandlerAdapter等等，该初始化上下文只加载Web相关组件 -->
-	
+
 	<!-- load-on-startup：表示启动容器时创建该Servlet实例 -->
 	<!-- http://blog.csdn.net/legend_x/article/details/32713817 -->
 	<!-- url-pattern：表示哪些请求交给Spring Web MVC处理，“/”是用来配置servlet映射的url，也可以如“*.html”表示拦截所有以html为扩展名的请求 -->
-	<!-- /不会匹配到*.jsp(会匹配到/login这样的路径型url)，不会进入DispatcherServlet类;/*会匹配所有url-->
+	<!-- /不会匹配到*.jsp(会匹配到/login这样的路径型url)，不会进入DispatcherServlet类;/*会匹配所有url -->
 	<servlet>
 		<servlet-name>dispatcherServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -46,6 +49,9 @@
 
 	<!-- http://blog.csdn.net/bluishglc/article/details/6283871 -->
 	<!-- 用openSessionInViewFilter过滤器去处理servlet: dispatcherServlet -->
+	<!-- 对于拥有相同filter-name的 filter及filter-mapping，filter必须在后者前面 -->
+	<!-- 一旦命名了一个过滤器，就要利用filter-mapping元素把它与一个或多个servlet或JSP页面相关联 -->
+	<!-- 过滤器元素将一个名字与一个实现javax.servlet.Filter接口的类相关联 -->
 	<filter>
 		<filter-name>openSessionInViewFilter</filter-name>
 		<filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>
@@ -56,7 +62,7 @@
 	</filter-mapping>
 
 	<!-- http://blog.csdn.net/u013803262/article/details/51861687 -->
-	<!-- 该过滤器主要目的是防止web开发中出现的乱码问题，如果method=get，spring提供的这个过滤器不会起作用  -->
+	<!-- 该过滤器主要目的是防止web开发中出现的乱码问题，如果method=get，spring提供的这个过滤器不会起作用 -->
 	<!-- 因为get方法是将参数直接跟在了请求的url上，而post方法则是将请求的参数放在报文内部 -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
@@ -74,6 +80,16 @@
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+
+	<!-- HttpSession超时设置（分钟） -->
+	<!-- 可通过使用HttpSession的setMaxInactiveInterval方法明确设置单个会话对象的超时值，或者可利用session-config元素制定缺省超时值 -->
+	<!-- setMaxInactiveInterval和session-config的优先级： -->
+	<!-- 1、setMaxInactiveInterval的优先级高，如果setMaxInactiveInterval没有设置，则默认是session-config中设置的时间 -->
+	<!-- 2、setMaxInactiveInterval设置的是当前会话的失效时间，不是整个web服务的;如果session-timeout元素的值为零或负数，则表示会话将永远不会超时 -->
+	<!-- 3、setMaxInactiveInterval的参数是秒，session-config当中配置的session-timeout是分钟 -->
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
 
 	<!-- http://yjhexy.iteye.com/blog/669252 -->
 	<!-- 访问静态资源 -->
@@ -114,7 +130,22 @@
 		<servlet-name>default</servlet-name>
 		<url-pattern>*.txt</url-pattern>
 	</servlet-mapping>
-	
+
+	<!-- 错误页面配置 -->
+	<!-- 在web.xml中有两种配置error-page的方法，一是通过error-code来配置，二是通过exception-type来配置 -->
+	<error-page>
+		<exception-type>exception-type</exception-type>
+		<location>/WEB-INF/views/error/500.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/WEB-INF/views/error/500.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/views/error/404.jsp</location>
+	</error-page>
+
 	<!-- 配置首页，依次寻找 -->
 	<welcome-file-list>
 		<welcome-file>login.jsp</welcome-file>

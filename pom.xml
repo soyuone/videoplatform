@@ -12,13 +12,14 @@
 	<!-- 项目主页的URL, Maven产生的文档用 -->
 	<url>http://maven.apache.org</url>
 
-	<!-- 定义全局属性 -->
+	<!-- properties元素用于定义全局属性 -->
 	<properties>
 		<springframework.version>4.2.0.RELEASE</springframework.version>
 		<springsecurity.version>4.0.4.RELEASE</springsecurity.version>
 		<hibernate.version>4.3.11.Final</hibernate.version>
 	</properties>
 
+	<!-- dependencies元素用于定义依赖关系 -->
 	<dependencies>
 		<!-- Spring Framework -->
 		<dependency>
@@ -151,6 +152,7 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
+			<!-- scope指定依赖库起作用的范围，test：只用于测试阶段，compile：默认的范围 编译，测试，打包时需要 -->
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -239,7 +241,8 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.14</version>
-			<!--<scope>runtime</scope>-->
+			<!-- scope指定依赖库起作用的范围，runtime：表示编译时不需要，但测试和运行时需要，最终打包时会包含进去 -->
+			<!--<scope>runtime</scope> -->
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -324,10 +327,12 @@
 		</dependency>
 	</dependencies>
 
+	<!-- build元素用于定义构建信息 -->
 	<build>
 		<!-- 产生的构件的文件名，默认值是${artifactId}-${version} -->
 		<finalName>videoplatform</finalName>
 		<plugins>
+			<!-- Compiler 插件, 设定JDK版本 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -339,6 +344,7 @@
 				</configuration>
 			</plugin>
 
+			<!-- jar打包插件 -->
 			<!-- 打jar包时排除测试文件 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -362,4 +368,17 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<!-- developers元素用于配置该项目的开发者信息 -->
+	<developers>
+		<developer>
+			<id>soyuone</id>
+			<name>SongYu</name>
+			<email>soyuone@sina.cn</email>
+			<roles>
+				<role>Project lead</role>
+			</roles>
+			<timezone>+8</timezone>
+		</developer>
+	</developers>
 </project>
