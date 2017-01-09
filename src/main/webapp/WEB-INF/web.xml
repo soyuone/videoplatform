@@ -25,6 +25,9 @@
 	<!-- 3.使用service方法响应用户请求 -->
 	<!-- 4.调用destroy销毁servlet -->
 
+	<!-- 在标准的MVC模式中，Servlet仅作为控制器使用，对于遵循MVC模式的Java EE应用而言，JSP仅作为表现层技术 -->
+	<!-- 所有用户请求都发送给Servlet，Servlet调用Model来处理用户请求，并调用JSP来呈现处理结果；或者Servlet直接调用JSP将应用的状态数据呈现给用户 -->
+
 	<!-- ContextLoaderListener初始化的上下文加载的Bean是对于整个应用程序共享的，不管是使用什么表现层技术，一般如DAO层、Service层Bean -->
 	<!-- DispatcherServlet初始化的上下文加载的Bean是只对Spring Web MVC有效的Bean，如Controller、HandlerMapping、HandlerAdapter等等，该初始化上下文只加载Web相关组件 -->
 
