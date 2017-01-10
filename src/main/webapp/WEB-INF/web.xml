@@ -70,6 +70,7 @@
 	<filter>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<!-- 通过init-param为该Filter配置参数 -->
 		<init-param>
 			<param-name>encoding</param-name>
 			<param-value>UTF-8</param-value>
@@ -79,6 +80,7 @@
 			<param-value>true</param-value>
 		</init-param>
 	</filter>
+	<!-- 该Filter会拦截所有的用户请求 -->
 	<filter-mapping>
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
