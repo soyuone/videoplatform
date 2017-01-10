@@ -14,7 +14,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/classes/*Context.xml</param-value>
 	</context-param>
-	<!-- 监听器，在会话或者servlet环境被创建、修改和删除时得到通知 -->
+	
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
@@ -65,7 +65,7 @@
 	</filter-mapping>
 
 	<!-- http://blog.csdn.net/u013803262/article/details/51861687 -->
-	<!-- 该过滤器主要目的是防止web开发中出现的乱码问题，如果method=get，spring提供的这个过滤器不会起作用 -->
+	<!-- 该过滤器主要目的是防止web开发中出现的乱码问题，如果为get请求，spring提供的这个过滤器不会起作用 -->
 	<!-- 因为get方法是将参数直接跟在了请求的url上，而post方法则是将请求的参数放在报文内部 -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
