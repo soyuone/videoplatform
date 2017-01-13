@@ -139,6 +139,8 @@ public class HibernateBaseDaoImpl<T, ID extends Serializable> implements Hiberna
 
 	@Override
 	public T update(T po) {
+		// merge,update,saveOrUpdate在所有属性无变动时均不会发送sql语句
+		// merge,update,saveOrUpdate更新时set会包含所有属性，只有显示指定@DynamicUpdate(true)下才会只更新变更的字段
 		getSession().merge(po);
 		return po;
 	}
