@@ -82,7 +82,6 @@ public class UserController {
 			String password = request.getParameter("password");
 			String sex = request.getParameter("sex");
 
-			// 注册
 			resultInfo = userService.register(userid, username, realname, email, birthday, createtime, password, sex);
 		}
 		catch (Exception e) {
@@ -110,7 +109,6 @@ public class UserController {
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
 
-			// 登录
 			resultObj = userService.login(username, password);
 
 			// 如果登录成功则把用户信息保存到HttpSession
@@ -146,7 +144,6 @@ public class UserController {
 			String userid = request.getParameter("userid");
 			String username = request.getParameter("username");
 
-			// 修改
 			resultInfo = userService.updateUserinfo(userid, username);
 		}
 		catch (Exception e) {

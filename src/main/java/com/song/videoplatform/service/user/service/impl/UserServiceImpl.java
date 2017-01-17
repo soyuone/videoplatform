@@ -37,7 +37,7 @@ import com.song.videoplatform.web.user.vo.UserVO;
  */
 @Service("userServiceImpl")
 public class UserServiceImpl implements UserService {
-	
+
 	protected Logger log = Logger.getLogger(UserServiceImpl.class);
 
 	@Resource(name = "userDaoImpl")
@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
 			return new ResultInfo(IConstant.FAILURE, "用户名已存在，请更换", false);
 		}
 
-		// 新增
+		// 添加
 		UserPO userPO = new UserPO();
 		userPO.setUserid(userid);
 		userPO.setUsername(username);
@@ -105,8 +105,11 @@ public class UserServiceImpl implements UserService {
 		int num =
 				userDao.createQuery(" UPDATE UserPO SET username = :username WHERE userid = :userid ")
 						.setParameter("username", username).setParameter("userid", userid).executeUpdate();
-		if(num > 0){
-			resultInfo = new ResultInfo(IConstant.FAILURE, "修改用户信息成功", true);
+		if (num > 0) {
+			resultInfo = new ResultInfo(IConstant.SUCCESS, "修改用户信息成功", true);
+		}
+		else {
+			resultInfo = new ResultInfo(IConstant.FAILURE, "修改用户信息失败", false);
 		}
 		return resultInfo;
 	}
