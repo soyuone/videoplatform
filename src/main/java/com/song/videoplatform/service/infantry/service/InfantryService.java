@@ -7,7 +7,7 @@ import com.song.videoplatform.service.infantry.model.po.InfantryPO;
  * Title: videoplatform_[infantry]_[Service层]
  * </p>
  * <p>
- * Description: [infantry表Service层]
+ * Description: [infantry对象Service层]
  * </p>
  * 
  * @author SO
@@ -19,7 +19,7 @@ public interface InfantryService {
 
 	/**
 	 * <p>
-	 * Description:[新增infantry信息]
+	 * Description:[新增infantry对象]
 	 * </p>
 	 * Created by [SOYU] [2016年11月24日] Midified by [修改人] [修改时间]
 	 *
@@ -30,7 +30,7 @@ public interface InfantryService {
 
 	/**
 	 * <p>
-	 * Description:[修改infantry信息]
+	 * Description:[修改infantry对象]
 	 * </p>
 	 * Created by [SOYU] [2016年11月24日] Midified by [修改人] [修改时间]
 	 *

@@ -13,7 +13,7 @@ import com.song.videoplatform.service.infantry.service.InfantryService;
  * Title: videoplatform_[infantry]_[Service层]
  * </p>
  * <p>
- * Description: [infantry表Service层实现类]
+ * Description: [infantry对象Service层实现类]
  * </p>
  * 
  * @author SO

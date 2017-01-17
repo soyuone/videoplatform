@@ -8,7 +8,7 @@ import com.song.videoplatform.service.infantry.model.po.InfantryPO;
  * Title: videoplatform_[infantry]_[Dao层]
  * </p>
  * <p>
- * Description: [infantry表Dao层]
+ * Description: [infantry对象Dao层]
  * </p>
  * 
  * @author SO

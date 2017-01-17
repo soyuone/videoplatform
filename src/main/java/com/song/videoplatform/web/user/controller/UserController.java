@@ -38,7 +38,7 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-	
+
 	// Java异常机制主要依赖于try,catch,finally,throw,throws五个关键字
 	// throws关键字主要用在方法签名中，用于声明该方法可抛出的异常
 	// throw用于抛出一个实际的异常
@@ -47,7 +47,7 @@ public class UserController {
 	// 所有的RuntimeException类及其子类的实例被称为Runtime异常；不是RuntimeException类及其子类的异常实例则被称为Checked异常
 	// 如果程序没有处理Checked异常，该程序在编译时就会发生错误，无法通过编译
 	// 用throws抛出异常：当前方法不知道如何处理这种类型的异常，该异常应该由上一级调用者处理
-	
+
 	// 如果throw语句抛出的异常是Checked异常，则该throw语句要么处于try块里，显示捕获该异常，要么放在一个带throws声明抛出的方法中，即把该异常交给该方法的调用者处理；
 	// 如果throw语句抛出的异常是Runtime异常，则该语句无须放在try块里，也无须放在带throws声明抛出的方法中；程序既可以显式使用try···catch来捕获并处理该异常，
 	// 也可以完全不理会该异常，把该异常交给该方法调用者处理
@@ -82,9 +82,8 @@ public class UserController {
 			String password = request.getParameter("password");
 			String sex = request.getParameter("sex");
 
-			//注册
-			resultInfo =
-					userService.register(userid, username, realname, email, birthday, createtime, password, sex);
+			// 注册
+			resultInfo = userService.register(userid, username, realname, email, birthday, createtime, password, sex);
 		}
 		catch (Exception e) {
 			log.error(e.getLocalizedMessage(), e);
@@ -111,7 +110,7 @@ public class UserController {
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
 
-			//登录
+			// 登录
 			resultObj = userService.login(username, password);
 
 			// 如果登录成功则把用户信息保存到HttpSession

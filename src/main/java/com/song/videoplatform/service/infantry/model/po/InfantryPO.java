@@ -1,20 +1,25 @@
 package com.song.videoplatform.service.infantry.model.po;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 /**
  * <p>
  * Title: videoplatform_[infantry]_[PO层]
  * </p>
  * <p>
- * Description: [infantry表PO层]
+ * Description: [infantry对象PO层]
  * </p>
  * 
  * @author SO
@@ -24,11 +29,12 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "tb_infantry")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class InfantryPO {
 
 	private Integer id;
 
-	private String actress;
+	private Integer actress;
 
 	private String series;
 
@@ -40,15 +46,15 @@ public class InfantryPO {
 
 	private String format;
 
-	private Date addtime;
+	private Timestamp addtime;
 
-	private String image;
+	private byte[] image;
 
 	public InfantryPO() {
 	}
 
-	public InfantryPO(Integer id, String actress, String series, String designation, String company, Double size,
-			String format, Date addtime, String image) {
+	public InfantryPO(Integer id, Integer actress, String series, String designation, String company, Double size,
+			String format, Timestamp addtime, byte[] image) {
 		this.id = id;
 		this.actress = actress;
 		this.series = series;
@@ -72,11 +78,11 @@ public class InfantryPO {
 	}
 
 	@Column(name = "actress")
-	public String getActress() {
+	public Integer getActress() {
 		return actress;
 	}
 
-	public void setActress(String actress) {
+	public void setActress(Integer actress) {
 		this.actress = actress;
 	}
 
@@ -126,20 +132,21 @@ public class InfantryPO {
 	}
 
 	@Column(name = "addtime")
-	public Date getAddtime() {
+	public Timestamp getAddtime() {
 		return addtime;
 	}
 
-	public void setAddtime(Date addtime) {
+	public void setAddtime(Timestamp addtime) {
 		this.addtime = addtime;
 	}
 
+	@Basic(fetch = FetchType.LAZY)
 	@Column(name = "image")
-	public String getImage() {
+	public byte[] getImage() {
 		return image;
 	}
 
-	public void setImage(String image) {
+	public void setImage(byte[] image) {
 		this.image = image;
 	}
 

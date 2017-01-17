@@ -13,7 +13,7 @@ import com.song.videoplatform.service.cavalry.service.CavalryService;
  * Title: videoplatform_[cavalry]_[Service层]
  * </p>
  * <p>
- * Description: [cavalry视频表Service层实现类]
+ * Description: [cavalry对象Service层实现类]
  * </p>
  * 
  * @author SOYU

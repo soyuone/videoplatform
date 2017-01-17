@@ -8,7 +8,7 @@ import com.song.videoplatform.service.cavalry.model.po.CavalryPO;
  * Title: videoplatform_[cavalry]_[Dao层]
  * </p>
  * <p>
- * Description: [cavalry视频表Dao层]
+ * Description: [cavalry对象Dao层]
  * </p>
  * 
  * @author SOYU

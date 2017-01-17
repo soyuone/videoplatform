@@ -7,7 +7,7 @@ import com.song.videoplatform.service.cavalry.model.po.CavalryPO;
  * Title: videoplatform_[cavalry]_[Service层]
  * </p>
  * <p>
- * Description: [cavalry视频表Service层]
+ * Description: [cavalry对象Service层]
  * </p>
  * 
  * @author SOYU
@@ -19,7 +19,7 @@ public interface CavalryService {
 
 	/**
 	 * <p>
-	 * Description:[新增cavalry视频信息]
+	 * Description:[新增cavalry对象]
 	 * </p>
 	 * Created by [SOYU] [2016年10月13日] Midified by [修改人] [修改时间]
 	 *

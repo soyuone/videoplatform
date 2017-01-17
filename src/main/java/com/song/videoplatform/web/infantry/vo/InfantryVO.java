@@ -1,12 +1,12 @@
 package com.song.videoplatform.web.infantry.vo;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class InfantryVO {
 
 	private Integer id;
 
-	private String actress;
+	private Integer actress;
 
 	private String series;
 
@@ -18,9 +18,9 @@ public class InfantryVO {
 
 	private String format;
 
-	private Date addtime;
+	private Timestamp addtime;
 
-	private String image;
+	private byte[] image;
 
 	public Integer getId() {
 		return id;
@@ -30,11 +30,11 @@ public class InfantryVO {
 		this.id = id;
 	}
 
-	public String getActress() {
+	public Integer getActress() {
 		return actress;
 	}
 
-	public void setActress(String actress) {
+	public void setActress(Integer actress) {
 		this.actress = actress;
 	}
 
@@ -78,19 +78,19 @@ public class InfantryVO {
 		this.format = format;
 	}
 
-	public Date getAddtime() {
+	public Timestamp getAddtime() {
 		return addtime;
 	}
 
-	public void setAddtime(Date addtime) {
+	public void setAddtime(Timestamp addtime) {
 		this.addtime = addtime;
 	}
 
-	public String getImage() {
+	public byte[] getImage() {
 		return image;
 	}
 
-	public void setImage(String image) {
+	public void setImage(byte[] image) {
 		this.image = image;
 	}
 

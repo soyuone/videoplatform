@@ -11,7 +11,7 @@ import com.song.videoplatform.service.infantry.model.po.InfantryPO;
  * Title: videoplatform_[infantry]_[Dao层]
  * </p>
  * <p>
- * Description: [infantry表Dao层实现类]
+ * Description: [infantry对象Dao层实现类]
  * </p>
  * 
  * @author SO
