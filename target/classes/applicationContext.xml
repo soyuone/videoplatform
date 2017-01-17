@@ -18,7 +18,7 @@
     http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
 
 	<!-- 属性占位符配置器-容器后处理器，必须实现BeanFactoryPostProcessor接口;ApplicationContext会自动检测部署在容器中的容器后处理器并自动注册容器后处理器 -->
-	<!-- 容器后处理器通常用于对spring容器进行处理，并且总是在容器实例化其他的bean之前，读取配置文件的元数据  -->
+	<!-- 容器后处理器通常用于对spring容器进行处理，并且总是在容器实例化其他的bean之前，读取配置文件的元数据 -->
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
@@ -28,11 +28,11 @@
 		</property>
 	</bean>
 
-	<!-- 扫描Bean，排除*Controller;扫描@Component,@Controller,@Service,@Repository标注的Bean-->
+	<!-- 扫描Bean，排除*Controller;扫描@Component,@Controller,@Service,@Repository标注的Bean -->
 	<!-- 自动扫描指定包及其子包下的所有Bean类 -->
 	<context:component-scan base-package="com.song.videoplatform">
 		<context:exclude-filter type="regex"
-			expression=".*Controller"/>
+			expression=".*Controller" />
 	</context:component-scan>
 
 	<!-- 定义dataSource,使用c3p0实现,并注入数据源的必要信息 -->
@@ -41,7 +41,7 @@
 		<property name="jdbcUrl" value="${hibernate.connection.url}" />
 		<property name="user" value="${hibernate.connection.username}" />
 		<property name="password" value="${hibernate.connection.password}" />
-		
+
 		<!--连接池中保留的最小连接数。 -->
 		<property name="minPoolSize" value="5" />
 		<!--连接池中保留的最大连接数。Default: 15 -->
@@ -64,7 +64,7 @@
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<!-- <property name="configLocation" value="classpath:hibernate.cfg.xml" /> -->
+		<!-- <property name="configLocation" value="classpath:hibernate.cfg.xml"/> -->
 		<property name="packagesToScan">
 			<list>
 				<value>com.song.videoplatform</value>
@@ -75,6 +75,16 @@
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
 				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
 				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+				<!-- 开启二级缓存的统计功能 -->
+				<prop key="hibernate.generate_statistics">${hibernate.generate_statistics}</prop>
+				<!-- 对数据库进行批量删除，批量更新和批量插入时的批次大小(相当于设置Buffer缓冲区大小，值越大则批量操作向数据库发送sql的次数越少，执行速度就越快) -->
+				<prop key="hibernate.jdbc.batch_size">${hibernate.jdbc.batch_size}</prop>
+				<!-- 开启二级缓存，默认关闭 -->
+				<prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
+				<!-- 设置使用结构化方式来维护缓存项 -->
+				<prop key="hibernate.cache.use_structured_entries">${hibernate.cache.use_structured_entries}</prop>
+				<!-- 设置二级缓存区的实现类 -->
+				<prop key="hibernate.cache.region.factory_class">${hibernate.cache.region.factory_class}</prop>
 			</props>
 		</property>
 	</bean>

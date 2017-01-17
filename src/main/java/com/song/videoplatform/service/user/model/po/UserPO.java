@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 /**
  * <p>
  * Title: videoplatform_[user]_[PO层]
@@ -22,8 +25,12 @@ import javax.persistence.Table;
  * @author (lastest modification by $Author$)
  * @since 20100901
  */
+
+// Cache指定对该类启用二级缓存，缓存策略为READ_WRITE读写缓存(如果程序要求使用序列化事务的隔离级别，则不能使用这种缓存策略)
+
 @Entity
 @Table(name = "tb_user")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class UserPO {
 
 	private Integer id;
