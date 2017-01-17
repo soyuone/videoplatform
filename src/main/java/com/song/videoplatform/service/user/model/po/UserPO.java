@@ -149,4 +149,12 @@ public class UserPO {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
+
+	@Override
+	public String toString() {
+		return "UserPO [id=" + id + ", userid=" + userid + ", username=" + username + ", realname=" + realname
+				+ ", email=" + email + ", birthday=" + birthday + ", createtime=" + createtime + ", password="
+				+ password + ", sex=" + sex + "]";
+	}
+
 }

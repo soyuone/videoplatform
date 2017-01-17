@@ -28,13 +28,23 @@ public class TestServiceImpl implements TestService {
 	private UserDao userDao;
 
 	@Override
-	public UserPO updateTest() {
+	public UserPO updateTest(Integer id) {
 		// 在加载了持久化实例后，实例就处于持久化状态，对持久化实例所作的修改会保存到数据库(会在Session flush前被自动保存到数据库，无须程序调用其它方法，
 		// 不需要调用update方法)
-		UserPO userPO = userDao.get(3);
+		UserPO userPO = userDao.get(id);
 		userPO.setRealname("宋玉");
 
 		return userPO;
+	}
+
+	@Override
+	public UserPO getTest(Integer id) {
+		return userDao.get(id);
+	}
+
+	@Override
+	public void findEhcache(String regionName) {
+		userDao.findEhcache(regionName);
 	}
 
 }

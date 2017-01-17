@@ -233,4 +233,12 @@ public interface HibernateBaseDao<T, ID extends Serializable> {
 	 */
 	public T findUniqueByProperty(String property, Object value);
 
+	/**
+	 * <p>
+	 * Description:[ehcache缓存统计功能]
+	 * </p>
+	 * Created by [SOYU] [2017年1月17日] Midified by [修改人] [修改时间]
+	 */
+	public void findEhcache(String regionName);
+
 }

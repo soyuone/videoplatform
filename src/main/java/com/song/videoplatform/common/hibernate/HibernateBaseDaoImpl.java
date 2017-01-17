@@ -318,4 +318,10 @@ public class HibernateBaseDaoImpl<T, ID extends Serializable> implements Hiberna
 		return (T) createCriteria(Restrictions.eq(property, value)).uniqueResult();
 	}
 
+	@Override
+	public void findEhcache(String regionName) {
+		@SuppressWarnings("rawtypes")
+		Map cacheEntries = sessionFactory.getStatistics().getSecondLevelCacheStatistics(regionName).getEntries();
+		System.out.println(cacheEntries);
+	}
 }
