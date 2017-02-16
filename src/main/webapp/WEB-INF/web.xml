@@ -99,6 +99,7 @@
 			<param-value>true</param-value>
 		</init-param>
 	</filter>
+	
 	<!-- 该Filter会拦截所有的用户请求 -->
 	<filter-mapping>
 		<filter-name>encodingFilter</filter-name>
