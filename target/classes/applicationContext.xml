@@ -98,8 +98,9 @@
 	</bean>
 
 	<!-- tx:命名空间提供<tx:advice.../>元素来配置事务增强处理,一旦使用该元素配置了事务增强处理,就可以直接使用<aop:advisor.../>元素启用自动代理 -->
-	<!-- name:与该事务语义关联的方法名,propagation:事务传播属性,isolation:隔离级别,read-only:该事务是否只读,rollback-for:指定事务回滚的异常类 -->
+	<!-- name:与该事务语义关联的方法名,propagation:事务传播属性,isolation:隔离级别,read-only:该事务是否只读,rollback-for:指定事务回滚的异常类,应使用全限定类名 -->
 	<!-- hibernate4必须配置为开启事务 否则 getCurrentSession()获取不到 -->
+	<!-- rollback-for="java.lang.Exception" -->
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="save*" propagation="REQUIRED" />
@@ -111,11 +112,11 @@
 			<tx:method name="del*" propagation="REQUIRED" />
 			<tx:method name="remove*" propagation="REQUIRED" />
 			<tx:method name="put*" propagation="REQUIRED" />
-			<tx:method name="use*" propagation="REQUIRED" />
-			<tx:method name="get*" propagation="REQUIRED" read-only="true" />
-			<tx:method name="count*" propagation="REQUIRED" read-only="true" />
-			<tx:method name="find*" propagation="REQUIRED" read-only="true" />
-			<tx:method name="list*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="use*" propagation="SUPPORTS" read-only="true" />
+			<tx:method name="get*" propagation="SUPPORTS" read-only="true" />
+			<tx:method name="count*" propagation="SUPPORTS" read-only="true" />
+			<tx:method name="find*" propagation="SUPPORTS" read-only="true" />
+			<tx:method name="list*" propagation="SUPPORTS" read-only="true" />
 			<tx:method name="*" read-only="true" />
 		</tx:attributes>
 	</tx:advice>
