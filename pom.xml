@@ -148,12 +148,7 @@
 			<artifactId>slf4j-api</artifactId>
 			<version>1.6.1</version>
 		</dependency>
-		<!-- ehcache依赖jar包 -->
-		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-			<version>1.2</version>
-		</dependency>
+		<!-- ehcache依赖jar包，还需要依赖于commons-logging包，已有 -->
 		<dependency>
 			<groupId>backport-util-concurrent</groupId>
 			<artifactId>backport-util-concurrent</artifactId>
@@ -207,6 +202,7 @@
 		</dependency>
 
 		<!-- Apache Commons工具类 -->
+		<!-- spring及ehcache还需要依赖于commons-logging包 -->
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
