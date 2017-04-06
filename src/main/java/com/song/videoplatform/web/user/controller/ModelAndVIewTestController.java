@@ -77,4 +77,11 @@ public class ModelAndVIewTestController {
 		mav.addObject("_USER_", userPO);
 		return mav;
 	}
+
+	// 测试ModelAndView（其它路径）
+	@RequestMapping(value = "/mav/multimap", method = RequestMethod.GET)
+	public ModelAndView getModelAndViewMultiLocations() {
+		ModelAndView mav = new ModelAndView("WEB-INF/views/error/403");
+		return mav;
+	}
 }
