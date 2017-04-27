@@ -4,3 +4,5 @@
  Spring MVC.
  
  Hibernate.
+ 
+ Ehcache.
