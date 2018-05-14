@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class TestVO {
 
-	private Integer id;//主键
+	private Integer id;// 主键
 
 	private String userid;
 
